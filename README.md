@@ -23,6 +23,22 @@ This project is a Python-based chess AI designed to:
 - Extensible architecture for future improvements
 - Python implementation for ease of development and experimentation
 
+## Data
+This project will use Lichess.com open data sets to train. The format of the data is Portable Game Notation (PGN)
+
+Ex. 
+```bash
+[Event "Club Game"]
+[Site "Online"]
+[Date "2026.10.15"]
+[Round "1"]
+[White "Player White"]
+[Black "Player Black"]
+[Result "1-0"]
+
+1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 {A classic Ruy Lopez opening.} 4. Ba4 Nf6 5. O-O 1-0
+```
+
 ## Requirements
 Before running the project, make sure you have Python installed on your system.
 You will also need the following dependencies:
