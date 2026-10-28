@@ -1,58 +1,68 @@
-# Chess AI Bot
+# Chess AI Engine: PGN-Driven Machine Learning Bot
 
-## Abstract
-This project explores the design and implementation of a chess-playing artificial intelligence system that combines machine learning techniques with classical game-search methods. The goal is to create a bot capable of evaluating board states, selecting strong moves, and competing effectively against human players or other chess engines.
+An interactive Python chess engine and GUI combining classic Minimax search with heuristic positional evaluation and a PGN dataset pipeline.
 
-The system is built in Python and is intended as a capstone project in computer science. It focuses on using a data-driven approach to chess strategy, including board representation, move generation, position evaluation, and decision-making through search algorithms. The project aims to provide a practical and educational foundation for understanding how modern AI systems can be applied to deterministic, adversarial games like chess.
+| Parameter | Project Details |
+| :--- | :--- |
+| **Author** | Ewan Robertson |
+| **Dataset Source** | Lichess Open Database (Standard Games PGN) |
+| **Repository** | [github.com/3wanr/chess-ai-bot](https://github.com/3wanr/chess-ai-bot) |
 
-## Project Developers
-- Ewan Robertson
+---
 
-## Project Overview
-This project is a Python-based chess AI designed to:
-- represent a chess board and legal moves,
-- evaluate board positions using heuristic and/or learned methods,
-- search for strong moves using decision algorithms,
-- serve as a foundation for future enhancements such as deeper search, neural-network evaluation, or a graphical interface.
+## 📌 Executive Summary
 
-## Features
-- Chess board logic
-- Move generation
-- Turn-based gameplay
-- AI move selection
-- Extensible architecture for future improvements
-- Python implementation for ease of development and experimentation
+Traditional chess engines such as Stockfish rely primarily on handcrafted position evaluation heuristics and deep search trees (e.g., Alpha-Beta pruning) to determine optimal moves. While exceptionally strong, this computational strategy consumes significant processing power and lacks human-like positional intuition.
 
-## Data
-This project will use Lichess.com open data sets to train. The format of the data is Portable Game Notation (PGN)
+This project develops a Python-based Chess AI Engine and Graphical User Interface. The system combines classic Minimax search with a rule-based evaluation model utilizing material counts and piece-square position tables. Built using `python-chess` for move validation and `Pygame` for an interactive board interface, the project allows human players to play directly against the AI in real time.
 
-Ex. 
-```bash
-[Event "Club Game"]
-[Site "Online"]
-[Date "2026.10.15"]
-[Round "1"]
-[White "Player White"]
-[Black "Player Black"]
-[Result "1-0"]
+---
 
-1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 {A classic Ruy Lopez opening.} 4. Ba4 Nf6 5. O-O 1-0
-```
+## 🛠️ Architecture & Core Modules
 
-## Requirements
-Before running the project, make sure you have Python installed on your system.
-You will also need the following dependencies:
+The repository is organized into modular components for clarity and maintainability:
 
-- Python 3.10+
-- pygame
-- numpy
-- tensorflow or another ML library (if used in future versions)
+| Module | Component | Purpose |
+| :--- | :--- | :--- |
+| `gui.py` | **Pygame Interface** | Handles window event loops, interactive 8x8 grid board rendering, sprite graphics, user input, and asynchronous threading to keep UI responsive during search. |
+| `engine.py` | **Search Engine** | Executes Minimax decision-tree search with Alpha-Beta pruning, move ordering heuristics, and search depth controls. |
+| `evaluator.py` | **Evaluation Module** | Computes static board scores combining piece material counts, piece-square tables (PST), king safety, pawn structure, and center control metrics. |
+| `dataset.py` | **PGN Data Pipeline** | Parses Lichess PGN dumps, filters high-ELO games (≥2000), and generates 8x8 tensor state encodings and feature vectors for learning models. |
+| `main.py` | **Application Entry** | Initializes application modules and launches the interactive game loop. |
 
-These can be installed using the included `requirements.txt` file.
+---
 
-## Installation
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd chess-ai-bot
-```
+## 📊 Dataset & PGN Data Pipeline
+
+The pipeline leverages raw game archives from the [Lichess Open Database](https://database.lichess.org/):
+
+1. **PGN Parsing & Extraction:** Streams and parses large `.pgn` database dumps using `python-chess`.
+2. **Quality Filtering:** Retains high-quality games where player ELO ≥ 2000 to eliminate tactical blunders and focus on strong positional play.
+3. **Tensor State Encoding:** Converts FEN strings into 8x8 spatial tensor representation maps (bitboard planes representing piece positions, active side, castling rights, en passant targets, and repetition counters).
+4. **Feature Vector Extraction:** Extracts heuristic vectors (material balance, mobility, pawn structure, and center control) mapped to outcome targets (+1 for White win, -1 for Black win, 0 for draw).
+
+---
+
+## 💻 Tech Stack
+
+* **Core Engine Language:** Python 3.x
+* **Chess Rules & Logic:** `python-chess`
+* **GUI Library:** `Pygame`
+* **Data Processing & Math:** `numpy`, `zstandard`
+* **Version Control:** Git / GitHub
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Python 3.8 or higher
+* `pip` package manager
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/3wanr/chess-ai-bot.git](https://github.com/3wanr/chess-ai-bot.git)
+   cd chess-ai-bot
