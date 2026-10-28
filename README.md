@@ -2,9 +2,9 @@
 
 An interactive Python chess engine and GUI combining classic Minimax search with heuristic positional evaluation and a PGN dataset pipeline.
 
-**Author** | Ewan Robertson
-**Dataset Source** | Lichess Open Database (Standard Games PGN)
-**Repository** | [github.com/3wanr/chess-ai-bot](https://github.com/3wanr/chess-ai-bot)
+**Author** | Ewan Robertson.
+**Dataset Source** | Lichess Open Database (Standard Games PGN).
+**Repository** | [github.com/3wanr/chess-ai-bot](https://github.com/3wanr/chess-ai-bot).
 
 ---
 
