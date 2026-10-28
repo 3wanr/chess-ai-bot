@@ -2,13 +2,13 @@
 
 An interactive Python chess engine and GUI combining classic Minimax search with heuristic positional evaluation and a PGN dataset pipeline.
 
-**Author** | Ewan Robertson.
-**Dataset Source** | Lichess Open Database (Standard Games PGN).
-**Repository** | [github.com/3wanr/chess-ai-bot](https://github.com/3wanr/chess-ai-bot).
+- Author: Ewan Robertson
+- Dataset Source: [Lichess Open Database](https://database.lichess.org/) (Standard Games PGN)
+- Repository: [github.com/3wanr/chess-ai-bot](https://github.com/3wanr/chess-ai-bot)
 
 ---
 
-## 📌 Executive Summary
+## 📌 Project Summary
 
 Traditional chess engines such as Stockfish rely primarily on handcrafted position evaluation heuristics and deep search trees (e.g., Alpha-Beta pruning) to determine optimal moves. While exceptionally strong, this computational strategy consumes significant processing power and lacks human-like positional intuition.
 
@@ -62,5 +62,6 @@ The pipeline leverages raw game archives from the [Lichess Open Database](https:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/3wanr/chess-ai-bot.git](https://github.com/3wanr/chess-ai-bot.git)
+   git clone https://github.com/3wanr/chess-ai-bot.git
    cd chess-ai-bot
+   ```
