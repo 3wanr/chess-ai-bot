@@ -1,8 +1,9 @@
-# Importing Modules
 import os
 import pygame
 
-# Initialising pygame module
+player_one = True
+player_two = False
+
 pygame.init()
 
 # Setting Width and height of the Chess Game screen
@@ -84,6 +85,26 @@ def draw_pieces():
             y = BOARD_Y + row * TILE_SIZE
             screen.blit(image, (x, y))
 
+# Check valid moves for a piece
+def is_valid_move(piece, start_pos, end_pos):
+    # Placeholder for move validation logic
+    return True
+
+def move_piece(start_pos, end_pos):
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
+    piece = board[start_row][start_col]
+
+    if piece is None:
+        return False
+
+    if not is_valid_move(piece, start_pos, end_pos):
+        return False
+
+    board[end_row][end_col] = piece
+    board[start_row][start_col] = None
+    return True
+
 running = True
 
 # main game loop
@@ -95,6 +116,9 @@ while running:
     screen.fill((50, 50, 50))
     draw_board()
     draw_pieces()
+
+    if (player_one):
+        
 
     pygame.display.flip()
     clock.tick(FPS)
