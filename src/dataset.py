@@ -1,1 +1,59 @@
 # PGN parsing, filtering (ELO >= 2000), & tensor encoding
+
+def extract_target_y(eval_entry, mate_value=10000):
+    pv = eval_entry["evals"][0]["pvs"][0]
+    if "cp" in pv:
+        return float(pv["cp"])
+    elif "mate" in pv:
+        return mate_value if pv["mate"] > 0 else -mate_value
+
+
+data = {
+  "fen": "2bq1rk1/pr3ppn/1p2p3/7P/2pP1B1P/2P5/PPQ2PB1/R3R1K1 w - -",
+  "evals": [
+    {
+      "pvs": [
+        {
+          "cp": 311,
+          "line": "g2e4 f7f5 e4b7 c8b7 f2f3 b7f3 e1e6 d8h4 c2h2 h4g4"
+        }
+      ],
+      "knodes": 206765,
+      "depth": 36
+    },
+    {
+      "pvs": [
+        {
+          "cp": 292,
+          "line": "g2e4 f7f5 e4b7 c8b7 f2f3 b7f3 e1e6 d8h4 c2h2 h4g4"
+        },
+        {
+          "cp": 277,
+          "line": "f4g3 f7f5 e1e5 d8f6 a1e1 b7f7 g2c6 f8d8 d4d5 e6d5"
+        }
+      ],
+      "knodes": 92958,
+      "depth": 34
+    },
+    {
+      "pvs": [
+        {
+          "cp": 190,
+          "line": "h5h6 d8h4 h6g7 f8d8 f4g3 h4g4 c2e4 g4e4 g2e4 g8g7"
+        },
+        {
+          "cp": 186,
+          "line": "g2e4 f7f5 e4b7 c8b7 f2f3 b7f3 e1e6 d8h4 c2h2 h4g4"
+        },
+        {
+          "cp": 176,
+          "line": "f4g3 f7f5 e1e5 f5f4 g2e4 h7f6 e4b7 c8b7 g3f4 f6g4"
+        }
+      ],
+      "knodes": 162122,
+      "depth": 31
+    }
+  ]
+}
+
+print(extract_target_y(data))
